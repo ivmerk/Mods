@@ -1,5 +1,3 @@
-using System;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -18,6 +16,13 @@ public class Mod
 
   public string Stat { get; set; } = null!;
 
-  public string[] Tags { get; set; } = null!;
+  public SpawnTag[] SpawnTags { get; set; } = null!;
 
+}
+
+public class SpawnTag
+{
+  public string SpawnName { get; set; } = null!;
+
+  public int Weigth { get; set; }
 }
