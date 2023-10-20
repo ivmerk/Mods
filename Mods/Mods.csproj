@@ -18,5 +18,8 @@
     <PackageReference Include="MongoDB.Driver.Core" Version="2.21.0" />
     <PackageReference Include="IntelliTect.Coalesce.Swashbuckle" Version="3.1.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models/PostStoreDatabaseSetting/" />
+  </ItemGroup>
 
 </Project>

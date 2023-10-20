@@ -5,8 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Add services to the container.
 builder.Services.Configure<ModStoreDatabaseSettings>(builder.Configuration.GetSection("ModStoreDatabase"));
+builder.Services.Configure<PostStoreDatabaseSettings>(builder.Configuration.GetSection("PostStoreDatabase"));
+builder.Services.Configure<CommentStoreDatabaseSettings>(builder.Configuration.GetSection("CommentStoreDatabase"));
 
-builder.Services.AddSingleton<ModsService>();
+builder.Services.AddScoped<ModsService>();
+builder.Services.AddScoped<CommentsService>();
+builder.Services.AddScoped<PostsService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
