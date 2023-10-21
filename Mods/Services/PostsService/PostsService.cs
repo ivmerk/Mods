@@ -25,16 +25,7 @@ public class PostsService
       await _postsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
   public async Task CreateAsync(Post newPostDTO)
   {
-    var newPost = new Post()
-    {
-      Slug = newPostDTO.Slug,
-      Title = newPostDTO.Title,
-      MetaTags = newPostDTO.MetaTags,
-      Description = newPostDTO.Description,
-      TextBody = newPostDTO.TextBody,
-      CreationDate = DateTime.Now.Date,
-      UpdateDate = DateTime.Now.Date
-    };
+    var newPost = new Post(newPostDTO);
     await _postsCollection.InsertOneAsync(newPost);
   }
 

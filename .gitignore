@@ -1,2 +1,5 @@
 Mods/obj
 Mods/bin
+.gitignore
+.vs
+.vscode

@@ -22,6 +22,26 @@ public class Post
   public DateTime? CreationDate { get; set; }
   [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
   public DateTime? UpdateDate { get; set; }
+
+  public Post()
+  {
+
+  }
+  public Post(Post post)
+  {
+    FillEntity(post);
+  }
+
+  public void FillEntity(Post post)
+  {
+    Slug = post.Slug;
+    Title = post.Title;
+    Description = post.Description;
+    MetaTags = post.MetaTags;
+    TextBody = post.TextBody;
+    CreationDate = DateTime.Now.Date;
+    UpdateDate = DateTime.Now.Date;
+  }
 }
 
 

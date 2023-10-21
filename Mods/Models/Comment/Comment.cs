@@ -20,7 +20,6 @@ public class Comment
 
   public Comment()
   {
-    // Конструктор без параметров
   }
   public Comment(Comment comment)
   {
