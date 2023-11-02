@@ -10,13 +10,15 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
     <PackageReference Include="MongoDB.Bson" Version="2.21.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.21.0" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.21.0" />
     <PackageReference Include="IntelliTect.Coalesce.Swashbuckle" Version="3.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models/PostStoreDatabaseSetting/" />

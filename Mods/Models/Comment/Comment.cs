@@ -1,22 +1,28 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ModStoreApi.Models;
 
+[Table("comments")]
 
 public class Comment
 {
-  [BsonId]
-  [BsonRepresentation(BsonType.ObjectId)]
-  public string? Id { get; set; }
+  [Column("commentid")]
+  public int? Id { get; set; }
 
-  public string PostId { get; set; } = null!;
-  public string UserId { get; set; } = null!;
+  [Column("postid")]
+  public int PostId { get; set; }
 
-  public string Text { get; set; } = null!;
+  [Column("userid")]
+  public int UserId { get; set; }
 
-  [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-  public DateTime CreationDate { get; set; }
+  [Column("textbody")]
+  public string TextBody { get; set; } = null!;
+
+  [Column("created_at")]
+  public DateTime CreatedAt { get; set; }
+
+  [Column("updated_at")]
+  public DateTime UpdatedAt { get; set; }
 
   public Comment()
   {
@@ -29,7 +35,8 @@ public class Comment
   {
     PostId = comment.PostId;
     UserId = comment.UserId;
-    Text = comment.Text;
-    CreationDate = DateTime.Now.Date;
+    TextBody = comment.TextBody;
+    CreatedAt = DateTime.Now.ToUniversalTime();
+    UpdatedAt = DateTime.Now.ToUniversalTime();
   }
 }
