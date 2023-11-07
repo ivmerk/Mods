@@ -1,3 +1,4 @@
+using IntelliTect.Coalesce.Models;
 using Microsoft.EntityFrameworkCore;
 using ModStoreApi.Models;
 
@@ -35,6 +36,12 @@ public class CommentRepository : ICommentRepository
   public async Task<Comment?> GetById(int id)
   {
     return await _context.Comments.FindAsync(id);
+  }
+
+  public async Task<List<Comment>> GetByPostId(int postId)
+  {
+    var comments = _context.Comments.Where(comment => comment.PostId == postId);
+    return await comments.ToListAsync();
   }
 
   public async Task Update(Comment comment)

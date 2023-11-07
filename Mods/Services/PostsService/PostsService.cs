@@ -16,22 +16,24 @@ public class PostsService
   }
   public async Task<List<Post>> GetAsync() => await _postRepository.GetAll();
 
-  public async Task<Post?> GetAsync(string id) =>
-      await _postRepository.GetById(int.Parse(id));
+  public async Task<Post?> GetAsync(int id) =>
+      await _postRepository.GetById(id);
   public async Task CreateAsync(Post newPostDTO)
   {
     var newPost = new Post(newPostDTO);
     await _postRepository.Insert(newPost);
   }
 
-  public async Task UpdateAsync(string id, UpdatePostDTO updatedPost)
+  public async Task UpdateAsync(Post post, UpdatePostDTO updatedPost)
   {
-    var post = await GetAsync(id) ?? throw new ArgumentException($"Нет поста с таким  Id");
     post.Title = updatedPost.Title ?? post.Title;
     post.Description = updatedPost.Description ?? post.Description;
     post.TextBody = updatedPost.TextBody ?? post.TextBody;
-    // post.MetaTags = updatedPost.MetaTags ?? post.MetaTags;
-    // post.UpdateDate = DateTime.Now.Date;
+    post.MetaTagTitle = updatedPost.MetaTagTitle ?? post.MetaTagTitle;
+    post.MetaTagDescription = updatedPost.MetaTagDescription ?? post.MetaTagDescription;
+    post.MetaTagKeywords = updatedPost.MetaTagKeywords ?? post.MetaTagKeywords;
+    post.CreatedAt = DateTime.SpecifyKind(post.CreatedAt, DateTimeKind.Utc);
+    post.UpdatedAt = DateTime.Now.ToUniversalTime();
     await _postRepository.Update(post);
   }
 

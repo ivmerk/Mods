@@ -17,8 +17,8 @@ public class PostsController : ControllerBase
     return await _postsService.GetAsync();
   }
 
-  [HttpGet("{id:length(24)}")]
-  public async Task<ActionResult<Post>> Get(string id)
+  [HttpGet("{id}")]
+  public async Task<ActionResult<Post>> Get(int id)
   {
     var post = await _postsService.GetAsync(id);
 
@@ -36,15 +36,16 @@ public class PostsController : ControllerBase
     return CreatedAtAction(nameof(Get), new { id = newPostDTO.Id }, newPostDTO);
   }
 
-  [HttpPut("{id:length(24)}")]
-  public async Task<IActionResult> Update(string id, UpdatePostDTO updatedPost)
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Update(int id, UpdatePostDTO updatedPost)
   {
-    var post = await _postsService.GetAsync(id);
-    if (post is null)
+    var oldPost = await _postsService.GetAsync(id);
+
+    if (oldPost is null)
     {
       return NotFound();
     }
-    await _postsService.UpdateAsync(id, updatedPost);
+    await _postsService.UpdateAsync(oldPost, updatedPost);
 
     return NoContent();
   }

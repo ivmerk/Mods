@@ -25,20 +25,19 @@ public class CommentsController : ControllerBase
   }
 
 
-  [HttpGet("{id:length(24)}")]
-  public async Task<ActionResult<List<Comment>>> Get(string id)
+  [HttpGet("{id}")]
+  public async Task<ActionResult<Comment>> Get(int id)
   {
-    var post = await _postsService.GetAsync(id);
-    if (post is null)
+    var comment = await _commentsService.GetAsync(id);
+    if (comment is null)
     {
       return NotFound();
     }
-    return await _commentsService.GetAsync(id);
-
+    return comment;
   }
 
-  [HttpGet("postid/{id:length(24)}")]
-  public async Task<ActionResult<List<Comment>>> GetByPostId(string id)
+  [HttpGet("postid/{id}")]
+  public async Task<ActionResult<List<Comment>>> GetByPostId(int id)
   {
     var post = await _postsService.GetAsync(id);
     if (post is null)
@@ -53,6 +52,19 @@ public class CommentsController : ControllerBase
   {
     await _commentsService.CreateAsync(newCommentDTO);
     return CreatedAtAction(nameof(Get), new { id = newCommentDTO.Id }, newCommentDTO);
+  }
+
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Update(int id, UpdateCommentDto updateCommentDto)
+  {
+    var oldComment = await _commentsService.GetAsync(id);
+    if (oldComment is null)
+    {
+      return NotFound();
+    }
+    await _commentsService.UpdateAsync(updateCommentDto, oldComment);
+
+    return NoContent();
   }
 }
 

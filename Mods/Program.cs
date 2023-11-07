@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql
 builder.Services.Configure<CommentStoreDatabaseSettings>(builder.Configuration.GetSection("CommentStoreDatabase"));
 
 builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 builder.Services.AddScoped<ModsService>();
 builder.Services.AddScoped<CommentsService>();

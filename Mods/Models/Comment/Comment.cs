@@ -10,13 +10,13 @@ public class Comment
   public int? Id { get; set; }
 
   [Column("postid")]
-  public int PostId { get; set; }
+  public int PostId { get; set; } = 0;
 
   [Column("userid")]
-  public int UserId { get; set; }
+  public int UserId { get; set; } = 0;
 
   [Column("textbody")]
-  public string TextBody { get; set; } = null!;
+  public string TextBody { get; set; } = string.Empty;
 
   [Column("created_at")]
   public DateTime CreatedAt { get; set; }
