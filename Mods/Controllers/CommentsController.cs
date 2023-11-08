@@ -18,12 +18,6 @@ public class CommentsController : ControllerBase
     _postsService = postsService;
   }
 
-  [HttpGet]
-  public async Task<List<Comment>> Get()
-  {
-    return await _commentsService.GetAsync();
-  }
-
 
   [HttpGet("{id}")]
   public async Task<ActionResult<Comment>> Get(int id)

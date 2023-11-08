@@ -14,8 +14,6 @@ public class CommentsService
     _commentRepository = commentRepository;
   }
 
-  public async Task<List<Comment>> GetAsync() => await _commentRepository.GetAll();
-
   public async Task<Comment?> GetAsync(int id) => await _commentRepository.GetById(id);
 
   public async Task<List<Comment>> GetByPostAsync(int postId) => await _commentRepository.GetByPostId(postId);
